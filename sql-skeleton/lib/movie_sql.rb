@@ -20,6 +20,18 @@ end
 # title.
 def bearded_films
   MovieDatabase.execute(<<-SQL)
+  SELECT
+    title
+  FROM
+    actors
+  JOIN
+    castings ON actors.id = castings.actor_id
+  JOIN
+    movies ON castings.movie_id = movies.id
+  WHERE
+    actors.name = 'Chuck Norris'
+  ORDER BY
+    movies.title
   SQL
 end
 
